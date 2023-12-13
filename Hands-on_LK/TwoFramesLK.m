@@ -11,18 +11,18 @@ end
 
 [Uf,Vf] = LucasKanade(At, At1, windowSize);
 
-% figure()
-% subplot(1,2,1)
-% imshow(At)
-% subplot(1,2,2)
-% imshow(At1)
+figure(1)
+subplot(1,3,1)
+imshow(At)
+subplot(1,3,2)
+imshow(At1)
 
-% figure()
-% SEE help quiver for more information
-subplot(1,2,1);
+subplot(1,3,3)
 quiver(Uf(1:10:size(Uf,1), 1:10:size(Uf,2)), Vf(1:10:size(Vf,1), 1:10:size(Vf,2)))
-% 1:10:size fa il downsampling
+title('Optical Flow Vectors');
+xlabel('X-axis');
+ylabel('Y-axis');
+axis ij; % ADDED BECAUSE THE PLOT WAS UPSIDE DOWN 
+axis tight; % Better resolution on the plot
+axis equal;
 
-
-%Uso quiver(u, -v, 0) per visualizzare il campo vettoriale (u,v)
-%
