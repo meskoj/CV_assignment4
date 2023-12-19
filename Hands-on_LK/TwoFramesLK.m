@@ -9,6 +9,7 @@ if (dep==3)
     At1 = rgb2gray(At1);
 end
 
+% Compute optical flow's components with Lucas Kanade
 [Uf,Vf] = LucasKanade(At, At1, windowSize);
 
 figure(1)

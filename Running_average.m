@@ -3,8 +3,8 @@ function Bprev = Running_average(Bprev,filename,filename_prev)
 % running average. For that you have to set the values for TAU and ALPHA
 
 % Play with these parameters
-TAU = 20;
-TAU_prime = 25;
+TAU = 30;
+TAU_prime = 0;
 ALPHA = 0.5;
 
    It = imread(filename);

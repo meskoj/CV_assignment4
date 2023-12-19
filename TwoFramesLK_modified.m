@@ -13,6 +13,12 @@ end
 % Calculate the magnitude of optical flow
 magnitude = sqrt(Uf.^2 + Vf.^2);
 
+% Since the magnitude is very noisy, it was added a threshold to eliminate
+% the values that are lower
+
+threshold = 1;
+magnitude(magnitude <= threshold) = 0;
+
 figure(1)
 subplot(1,2,1);
 imshow(magnitude);

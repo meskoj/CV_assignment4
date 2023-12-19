@@ -1,14 +1,14 @@
 %% Task 1: work on the videosurveillance sequence using a simple background obtained as an 
 % average between two empty frames
 
-% load two empty images
+% Load two empty images
 B1 = double(rgb2gray(imread('EmptyScene01.jpg')));
 B2 = double(rgb2gray(imread('EmptyScene02.jpg')));
 
-% compute a simple background model
+% Compute a simple background model
 B = 0.5*(B1 + B2);
 
-% load each image in the sequence, perform the change detection
+% Load each image in the sequence, perform the change detection
 % show the frame, the background and the binary map
 % Observe how the results change as you vary the threshold
 
@@ -25,9 +25,9 @@ for t = FIRST_IDX : LAST_IDX
     
     Mt = (abs(double(Ig) - B) > tau);
     
-    subplot(1, 3, 1), imshow(It);
-    subplot(1, 3, 2), imshow(uint8(B));
-    subplot(1, 3, 3), imshow(uint8(Mt*255));
+    subplot(1, 3, 1), imshow(It),title("Original Image");
+    subplot(1, 3, 2), imshow(uint8(B)), title("Background");
+    subplot(1, 3, 3), imshow(uint8(Mt*255)), title("Binary Matrix");
     pause(0.5)
 
 end
@@ -35,10 +35,10 @@ end
 %% Task 2: working again on the videosurveillance sequence, use now a background model based 
 % on running average to incorporate scene changes
 
-FIRST_IDX = 250; %index of first image
-LAST_IDX = 320; % index of last image
+FIRST_IDX = 250; % Index of first image
+LAST_IDX = 320;  % Index of last image
 
-%Let's use the first N  frames to initialize the background
+% Let's use the first N  frames to initialize the background
 N = 5;
 
 filename = sprintf('../../Data/videosurveillance/frame%4.4d.jpg', FIRST_IDX);
@@ -55,9 +55,9 @@ end
 B = B / N; % Put as background the average of the first 5 frames
 
 % Play with these parameters
-TAU = 30; % Definisce i punti che si muovono
-ALPHA = 0.5; % Definisce come aggiornare il background
-tau_prime = 0; % Serve a definire quali pixel si muovono e quali no %Con zero funziona, provo ad aumentare leggermente
+TAU = 40; 
+ALPHA = 0.7;
+tau_prime = 2; 
 
 % Now start the change detection while updating the background with the
 % running average. For that you have to set the values for TAU and ALPHA
@@ -89,9 +89,9 @@ for t = FIRST_IDX+N : LAST_IDX
         end
     end
 
-    subplot(1, 3, 1), imshow(It), title "Original image"
-    subplot(1, 3, 2), imshow(uint8(Bt)), title "Background"
-    subplot(1, 3, 3), imshow(uint8(Mt*255)), title "Binary background"
+    subplot(1, 3, 1), imshow(It), title("Original Image")
+    subplot(1, 3, 2), imshow(uint8(Bt)), title("Background")
+    subplot(1, 3, 3), imshow(uint8(Mt*255)), title("Binary Matrix")
     pause(0.1)
     Bprev = Bt;
     
