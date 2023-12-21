@@ -30,9 +30,9 @@ for i = halfW+1 : size(fx,1)-halfW
        counter = 1;
        for w1 = 1:dimWindow
            for w2 = 1:dimWindow
-               A(counter,1) = fx(i - floor(dimWindow/2) + w1, j - floor(dimWindow/2) + w2);
-               A(counter,2) = fy(i - floor(dimWindow/2) + w1, j - floor(dimWindow/2) + w2);
-               b(counter,1) = -ft(i - floor(dimWindow/2) + w1, j - floor(dimWindow/2) + w2);
+               A(counter,1) = fx(i - halfDW + (w1-1), j - halfDW + (w2-1));
+               A(counter,2) = fy(i - halfDW + (w1-1), j - halfDW + (w2-1));
+               b(counter,1) = -ft(i - halfDW + (w1-1), j - halfDW + (w2-1));
                counter = counter + 1;
            end
        end

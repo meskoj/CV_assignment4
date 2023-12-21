@@ -23,6 +23,7 @@ v = zeros(size(im1));
 
 halfW = floor(windowSize/2);
 dimWindow = sqrt(windowSize);
+halfDW = floor(dimWindow/2);
 
 % For each pixel of an image I build a least square system 
 for i = halfW+1 : size(fx,1)-halfW
@@ -30,9 +31,9 @@ for i = halfW+1 : size(fx,1)-halfW
        counter = 1;
        for w1 = 1:dimWindow
            for w2 = 1:dimWindow
-               A(counter,1) = fx(i - halfW + w1, j - halfW + w2);
-               A(counter,2) = fy(i - halfW + w1, j - halfW + w2);
-               b(counter,1) = -ft(i - halfW + w1, j - halfW + w2);
+               A(counter,1) = fx(i - halfDW + (w1-1), j - halfDW + (w2-1));
+               A(counter,2) = fy(i - halfDW + (w1-1), j - halfDW + (w2-1));
+               b(counter,1) = -ft(i - halfDW + (w1-1), j - halfDW + (w2-1));
                counter = counter + 1;
            end
        end
