@@ -14,7 +14,7 @@ end
 magnitude = sqrt(Uf.^2 + Vf.^2);
 
 % Since the magnitude is very noisy, it was added a threshold to eliminate
-% the values that are lower
+% the values that are lower than it
 
 threshold = 1;
 magnitude(magnitude <= threshold) = 0;
